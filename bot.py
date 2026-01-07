@@ -1,9 +1,23 @@
+from flask import Flask
 import requests
 import time
 from datetime import datetime
 import os
 import threading
 import re
+
+# ===== KEEP ALIVE FOR RENDER =====
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "OK", 200
+
+def run_web():
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+
+threading.Thread(target=run_web, daemon=True).start()
+# ================================
 
 # ================= CONFIG =================
 BOT_TOKEN = os.environ.get("BOT_TOKEN")  # Render se environment variable
