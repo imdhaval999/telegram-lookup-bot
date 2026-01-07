@@ -567,7 +567,7 @@ def process_message(chat_id, text):
                 delete_message(chat_id, loading)
                 threading.Thread(
                     target=auto_delete_file,
-                    args=(chat_id, fid)
+                    args=(chat_id, fid),
                   daemon=True
                 ).start()
             else:
